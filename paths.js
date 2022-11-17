@@ -81,10 +81,10 @@ module.exports = function(PM2_HOME) {
 
   if (process.platform === 'win32' ||
       process.platform === 'win64') {
-    //@todo instead of static unique rpc/pub file custom with PM2_HOME or UID
-    pm2_file_stucture.DAEMON_RPC_PORT = '\\\\.\\pipe\\rpc.sock';
-    pm2_file_stucture.DAEMON_PUB_PORT = '\\\\.\\pipe\\pub.sock';
-    pm2_file_stucture.INTERACTOR_RPC_PORT = '\\\\.\\pipe\\interactor.sock';
+    USERNAME = process.env.USERNAME;
+    pm2_file_stucture.DAEMON_RPC_PORT = `\\\\.\\pipe\\${USERNAME}rpc.sock`;
+    pm2_file_stucture.DAEMON_PUB_PORT = `\\\\.\\pipe\\${USERNAME}pub.sock`;
+    pm2_file_stucture.INTERACTOR_RPC_PORT = `\\\\.\\pipe\\${USERNAME}interactor.sock`;
   }
 
   return pm2_file_stucture;
